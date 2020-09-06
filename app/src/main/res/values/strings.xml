@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Podcast</string>
+
+    <string name="bottom_navigation_txt_home">Home</string>
+    <string name="bottom_navigation_txt_search">Search</string>
+
+    <string name="bottom_navigation_txt_download">Download</string>
+    <string name="bottom_navigation_txt_profile">Profile</string>
+    <string name="tv_tatical">How to Influence with Tactical Empathy</string>
+
+    <string name="title">Designing for everyone,everywhere with \n Yosef P.</string>
+
+
+    <string name="description">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</string>
+
+    <string name="sample_text">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC....</string>
+
+    <string name="play_title">Women Tech Podcast</string>
+    <string name="title_podcast">Podcast</string>
+    <string name="tv_next">Up Next</string>
+    <string name="art_design">ART &amp; DESIGN</string>
+
+    <string name="media_url_mp3">https://chtbl.com/track/24EG4/traffic.libsyn.com/secure/mfceoproject/Ep_55_-_7.10.2020_Pt2.mp3</string>
+
+
+</resources>

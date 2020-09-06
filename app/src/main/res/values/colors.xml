@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F33636</color>
+    <color name="colorPrimaryDark">#80FFFFFF</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="progress_color">#bae2fe</color>
+    <color name="warm_grey">#979797</color>
+    <color name="line_color">#cee6e7</color>
+    <color name="media_bgcolor">#5854a3</color>
+
+    <color name="light_color">#f6f6f8</color>
+
+
+
+
+
+
+
+
+
+
+</resources>

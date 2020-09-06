@@ -1,0 +1,19 @@
+package com.padcx.mmz.podcast.persistance.typeconverters
+
+import androidx.room.TypeConverter
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
+
+class GenreIdListConverter {
+    @TypeConverter
+    fun toString(dataList: List<Int>):String{
+        return Gson().toJson(dataList)
+    }
+
+    @TypeConverter
+    fun toList(ListJsonStr:String): List<Int> {
+        val dataListType = object : TypeToken<List<Int>>(){}.type
+        return Gson().fromJson(ListJsonStr,dataListType)
+    }
+}

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_2x"
+    app:cardCornerRadius="@dimen/margin_2x"
+    app:cardElevation="@dimen/margin_1x"
+    app:cardUseCompatPadding="false"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:padding="@dimen/margin_3x"
+        android:id="@+id/cl_podcast">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_2x"
+            android:layout_marginTop="@dimen/margin_2x"
+            android:layout_marginRight="@dimen/margin_2x"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_show_image"
+                android:layout_width="@dimen/package_image_width"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/margin_1x"
+                android:background="@color/colorWhite"
+                app:cardCornerRadius="@dimen/margin_2x"
+                app:layout_constraintBottom_toBottomOf="@id/tv_hint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_category">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_show_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/culture"
+                    tools:srcCompat="@drawable/culture" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_4x"
+                android:layout_marginTop="@dimen/margin_1x"
+                android:layout_marginEnd="@dimen/margin_2x"
+                android:background="@drawable/rounded_background"
+                android:contentDescription="@string/app_name"
+                android:paddingLeft="@dimen/margin_2x"
+                android:paddingTop="@dimen/margin_1x"
+                android:paddingRight="@dimen/margin_2x"
+                android:paddingBottom="@dimen/margin_1x"
+                android:scaleType="centerCrop"
+                android:textAllCaps="true"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="normal"
+                android:ellipsize="end"
+                app:layout_constraintStart_toEndOf="@+id/cv_show_image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Culture" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/margin_4x"
+                android:layout_marginTop="@dimen/margin_1x"
+                android:contentDescription="@string/app_name"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:padding="@dimen/margin_1x"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cv_show_image"
+                app:layout_constraintTop_toBottomOf="@+id/tv_category"
+                tools:text="From the Poetry Foundation,this is a daily dose of..." />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_hint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_4x"
+                android:layout_marginBottom="@dimen/margin_2x"
+                android:contentDescription="@string/app_name"
+                android:gravity="center_vertical"
+                android:text="Each Day Classic and ...."
+                android:textSize="12sp"
+                android:padding="@dimen/margin_1x"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cv_show_image"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
