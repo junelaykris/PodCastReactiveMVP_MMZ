@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.padcx.mmz.podcast.views.viewpods.MediaPlayerSmallViewPod xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_2x">
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/margin_2x"
-    app:cardElevation="@dimen/margin_1x"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/media_bgcolor">
+        android:background="@drawable/rounded_media_background">
 
         <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/progressBar"
@@ -44,10 +43,10 @@
 
         <TextView
             android:id="@+id/tvBackward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_toEndOf="@id/tvPlaySpeed"
-            android:text="15"
+            android:background="@drawable/ic_baseline_replay_10_24"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="@+id/tvPlaySpeed"
             app:layout_constraintEnd_toStartOf="@+id/play_view"
@@ -61,8 +60,8 @@
             android:layout_height="@dimen/margin_real_50x"
             android:layout_alignTop="@id/tvPlaySpeed"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="@dimen/margin_4x"
+            android:layout_marginBottom="@dimen/margin_4x"
             android:background="@drawable/playbackground"
             android:padding="@dimen/margin_2x"
             android:src="@drawable/ic_baseline_play_arrow_24"
@@ -75,10 +74,11 @@
 
         <TextView
             android:id="@+id/tvForward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_toEndOf="@id/tvPlaySpeed"
-            android:text="30"
+            android:text=""
+            android:background="@drawable/ic_baseline_forward_30_24"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="@+id/tvBackward"
             app:layout_constraintEnd_toStartOf="@+id/tv_sleep"
@@ -106,20 +106,22 @@
             android:layout_marginStart="@dimen/margin_2x"
             android:text="18:51"
             android:textColor="@android:color/white"
+            android:layout_marginTop="@dimen/margin_5x"
             app:layout_constraintBottom_toBottomOf="@+id/progressBar"
             app:layout_constraintEnd_toEndOf="@+id/tv_sleep"
             app:layout_constraintStart_toEndOf="@+id/progressBar"
-            app:layout_constraintTop_toTopOf="@+id/progressBar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvStartTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_2x"
+            android:layout_marginTop="@dimen/margin_5x"
             android:text="05:15"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="@+id/tvPlaySpeed"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

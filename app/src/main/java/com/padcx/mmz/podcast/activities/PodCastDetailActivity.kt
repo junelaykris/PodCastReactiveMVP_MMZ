@@ -4,34 +4,39 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.text.Layout
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.padcx.mmz.podcast.R
 import com.padcx.mmz.podcast.data.vos.DetailPodCastVO
+import com.padcx.mmz.podcast.data.vos.PodcastVO
 import com.padcx.mmz.podcast.mvp.presenterImpls.DetailPresenterImpl
 import com.padcx.mmz.podcast.mvp.presenters.DetailPresenter
 import com.padcx.mmz.podcast.mvp.view.DetailView
 import com.padcx.mmz.podcast.utils.*
 import com.padcx.mmz.podcast.views.viewpods.MediaPlayerSmallViewPod
+import kotlinx.android.synthetic.main.activity_detail_content.*
 import kotlinx.android.synthetic.main.activity_detail_show.*
 
 /**
  * Created by Myint Myint Zaw on 8/29/2020.
  */
 @Suppress("DEPRECATION")
-class PodCastDetailActivity:AppCompatActivity(),DetailView{
+class PodCastDetailActivity : AppCompatActivity(), DetailView {
 
     private lateinit var mPresenter: DetailPresenter
     private var initPlayer = false
     private lateinit var miniPlayerViewPod: MediaPlayerSmallViewPod
 
-    companion object{
-        const val EPISODE_ID= "dataId"
-        const val FROMPAGE ="fromPage"
-        const val DOWNLOAD_AUDI_FILE_PATH ="audio_file_path"
+    companion object {
+        const val EPISODE_ID = "dataId"
+        const val FROMPAGE = "fromPage"
+        const val DOWNLOAD_AUDI_FILE_PATH = "audio_file_path"
         fun newIntent(
             context: Context,
             episodeID: String,
@@ -51,7 +56,15 @@ class PodCastDetailActivity:AppCompatActivity(),DetailView{
         setContentView(R.layout.activity_detail_show)
         setUpPresenter()
         setUpViewPod()
+        setUpListener()
         mPresenter.onUiReady(this, intent.getStringExtra(EPISODE_ID).toString())
+    }
+
+    private fun setUpListener() {
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+            if (initPlayer) MyMediaPlayerHelper.mediaPlayerStopPlayBack(this)
+        }
     }
 
     private fun setUpViewPod() {
@@ -65,11 +78,11 @@ class PodCastDetailActivity:AppCompatActivity(),DetailView{
     }
 
     override fun displayDetailData(data: DetailPodCastVO) {
-        tvCategoriesType.text=data.podcast.type
+        tvCategoriesType.text = data.podcast.type
         podCastTitle.text = data.title
-        tv_description.text = Html.fromHtml(data.description)
         ivDetail.load(data.thumbnail)
         miniPlayerViewPod.setUpData(data.audio)
+        tv_description.text = Html.fromHtml(data.description)
     }
 
     override fun onTouchPlayPauseIcon(audioUri: String) {
@@ -77,7 +90,11 @@ class PodCastDetailActivity:AppCompatActivity(),DetailView{
             tryToStepUpMediaPlayer(audioUri)
         } else {
             if (!verifyAvailableNetwork()) {
-                Toast.makeText(this, "Please Check Internet Connection , This is streaming type", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Please Check Internet Connection!",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 tryToStepUpMediaPlayer(audioUri)
             }
@@ -86,9 +103,10 @@ class PodCastDetailActivity:AppCompatActivity(),DetailView{
     }
 
     private fun verifyAvailableNetwork(): Boolean {
-        val connectivityManager=this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo=connectivityManager.activeNetworkInfo
-        return  networkInfo!=null && networkInfo.isConnected
+        val connectivityManager =
+            this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
     }
 
     private fun tryToStepUpMediaPlayer(audioUri: String) {
@@ -125,8 +143,4 @@ class PodCastDetailActivity:AppCompatActivity(),DetailView{
         MyMediaPlayerHelper.backwardMediaPlayBack(this)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if(initPlayer)  MyMediaPlayerHelper.mediaPlayerStopPlayBack(this)
-    }
 }

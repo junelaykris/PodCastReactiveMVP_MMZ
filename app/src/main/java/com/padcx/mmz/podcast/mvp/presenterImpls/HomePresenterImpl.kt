@@ -20,6 +20,8 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
     var mPodCastModel: PodCastModel = PodCastModelImpls
 
     override fun onUiReady(lifecycleOwner: LifecycleOwner) {
+        mPodCastModel.getAllPlayListFromApiAndSaveToDatabase(onSuccess = {}, onError = {})
+        mPodCastModel.getRandomPodCastFromApiAndSaveToDatabase(onSuccess = {}, onError = {})
         loadPlayList(lifecycleOwner)
         loadRandomPodcast(lifecycleOwner)
     }
@@ -45,20 +47,21 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
     }
 
     override fun onTapPlayListItem(playListVO: PlaylistVO) {
-        mView?.navigateToDetailScreen(playListVO.data!!.podcast.pid)
+        mView?.navigateToDetailScreen(playListVO.data!!.dataId)
     }
 
     override fun onTapDownloadItem(dataVO: DataVO) {
         val downloadVO = DownloadVO(
-            dataVO.id2, dataVO.title, dataVO.description,
-            dataVO.thumbnail, dataVO.title.trim().substring(0,8))
+            dataVO.dataId, dataVO.title, dataVO.description,
+            dataVO.thumbnail, dataVO.title.trim().substring(0, 8)
+        )
 
         mPodCastModel?.saveDownloadPodcastItem(downloadVO, onSuccess = {}, onError = {})
         mView?.selectedDownloadItem(dataVO)
     }
 
     private fun loadPlayList(lifecycleOwner: LifecycleOwner) {
-        mPodCastModel.getPlayListFromDB (onError = {
+        mPodCastModel.getPlayListFromDB(onError = {
         }).observe(lifecycleOwner, Observer {
             mView?.displayPlayList(it)
         })
@@ -66,12 +69,11 @@ class HomePresenterImpl : HomePresenter, AbstractBasePresenter<HomeView>() {
 
 
     private fun loadRandomPodcast(lifecycleOwner: LifecycleOwner) {
-        mPodCastModel.getRandomEpisodeFromDB (onError = {
+        mPodCastModel.getRandomEpisodeFromDB(onError = {
         }).observe(lifecycleOwner, Observer {
-            if(it!=null){
+            if (it != null) {
                 mView?.showRandomEpisode(it)
             }
-
         })
     }
 }

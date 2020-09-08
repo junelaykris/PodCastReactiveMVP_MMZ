@@ -38,7 +38,6 @@ class UpNextItemViewHolder(
     override fun bindData(data: PlaylistVO) {
         mData = data
         itemView.tv_category.text = data.type
-
         val htmlTextStr: String = Html.fromHtml(data.data!!.description).toString()
         itemView.tv_detail.text = htmlTextStr
 

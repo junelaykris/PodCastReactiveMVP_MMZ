@@ -14,10 +14,11 @@ import com.padcx.mmz.podcast.persistance.typeconverters.PodCastVOConverter
 @Entity(tableName = "playlist_entity")
 @TypeConverters(DataConverter::class, PodCastVOConverter::class)
 data class PlaylistVO(
-    @PrimaryKey
-    @SerializedName("added_at_ms") var added_at_ms: Long = 0L,
 
+    @SerializedName("added_at_ms") var added_at_ms: Long = 0L,
     @SerializedName("data") var data: DataVO? = null,
+
+    @PrimaryKey
     @SerializedName("id") var id: Int = 0,
     @SerializedName("notes") var notes: String = "",
     @SerializedName("type") var type: String = ""
@@ -28,7 +29,9 @@ data class DataVO(
     @SerializedName("audio_length_sec")var audio_length_sec: Int,
     @SerializedName("description")var description: String,
     @SerializedName("explicit_content")var explicit_content: Boolean,
-    @SerializedName("id")var id2: String,
+
+    @PrimaryKey
+    @SerializedName("id")var dataId: String,
     @SerializedName("image")var image: String,
     @SerializedName("link")var link: String,
     @SerializedName("listennotes_edit_url")var listennotes_edit_url: String,

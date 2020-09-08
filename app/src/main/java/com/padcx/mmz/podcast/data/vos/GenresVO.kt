@@ -12,6 +12,7 @@ data class GenresVO(
     @PrimaryKey
     @SerializedName("id") val id: Int,
     @SerializedName("parent_id") val parent_id: String,
+    @SerializedName("image_url")   val image_url: String,
     @SerializedName("name") val name: String
 ) {
 }

@@ -11,8 +11,8 @@ import com.padcx.mmz.podcast.persistance.daos.PodCastDao
  * Created by Myint Myint Zaw on 9/5/2020.
  */
 @Database(
-    entities = [GenresVO::class, PlaylistVO::class, RandomPodCastVO::class, DetailPodCastVO::class, DownloadVO::class],
-    version = 9,
+    entities = [GenresVO::class, PlaylistVO::class, RandomPodCastVO::class, DetailPodCastVO::class,PodcastVO::class, DownloadVO::class],
+    version = 17,
     exportSchema = false
 )
 abstract class PodCastDB : RoomDatabase() {

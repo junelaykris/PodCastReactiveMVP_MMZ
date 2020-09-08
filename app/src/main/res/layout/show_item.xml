@@ -12,18 +12,17 @@
     app:layout_constraintTop_toTopOf="parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_podcast"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        android:padding="@dimen/margin_3x"
-        android:id="@+id/cl_podcast">
+        android:padding="@dimen/margin_1x">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_2x"
-            android:layout_marginTop="@dimen/margin_2x"
-            android:layout_marginRight="@dimen/margin_2x"
+            android:layout_margin="@dimen/margin_1x"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -44,8 +43,8 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/app_name"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/culture"
-                    tools:srcCompat="@drawable/culture" />
+                    app:srcCompat="@drawable/placeholder"
+                    tools:srcCompat="@drawable/placeholder" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -58,6 +57,7 @@
                 android:layout_marginEnd="@dimen/margin_2x"
                 android:background="@drawable/rounded_background"
                 android:contentDescription="@string/app_name"
+                android:ellipsize="end"
                 android:paddingLeft="@dimen/margin_2x"
                 android:paddingTop="@dimen/margin_1x"
                 android:paddingRight="@dimen/margin_2x"
@@ -67,7 +67,6 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/medium_text_size"
                 android:textStyle="normal"
-                android:ellipsize="end"
                 app:layout_constraintStart_toEndOf="@+id/cv_show_image"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Culture" />
@@ -100,9 +99,12 @@
                 android:layout_marginBottom="@dimen/margin_2x"
                 android:contentDescription="@string/app_name"
                 android:gravity="center_vertical"
+                android:padding="@dimen/margin_1x"
                 android:text="Each Day Classic and ...."
                 android:textSize="12sp"
-                android:padding="@dimen/margin_1x"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cv_show_image"
                 app:layout_constraintTop_toBottomOf="@+id/tv_detail" />

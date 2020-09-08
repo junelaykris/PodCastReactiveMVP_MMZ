@@ -13,8 +13,12 @@ interface PodCastModel {
 
     /*podcast list*/
     fun getPlayListFromDB(onError: (String) -> Unit): LiveData<List<PlaylistVO>>
+    fun getAllPlayListFromApiAndSaveToDatabase(onSuccess: () -> Unit, onError: (String) -> Unit)
 
+
+    /*random podcast*/
     fun getRandomEpisodeFromDB(onError: (String) -> Unit):LiveData<RandomPodCastVO>
+    fun getRandomPodCastFromApiAndSaveToDatabase( onSuccess: () -> Unit, onError: (String) -> Unit)
 
     //Detail Episode Data
     fun getDetailFromApiAndSaveToDatabase(episodeId : String, onSuccess: (detailVO :DetailPodCastVO) -> Unit, onError: (String) -> Unit)

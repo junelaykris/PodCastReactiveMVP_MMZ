@@ -1,5 +1,6 @@
 package com.padcx.mmz.podcast.views.viewholders
 
+import android.text.Html
 import android.view.View
 import com.padcx.mmz.podcast.data.ShowVO
 import com.padcx.mmz.podcast.data.vos.DownloadVO
@@ -28,10 +29,10 @@ class ShowItemViewHolder(
 
     override fun bindData(data: DownloadVO) {
         mData = data
-        itemView.tv_category.text = data.donwload_podcast_title
-        itemView.tv_detail.text = data.download_podcast_description
-      /*  itemView.tv_hint.text = data.download_podcast_description*/
 
+        itemView.tv_category.text = "CATEGORY"
+        itemView.tv_detail.text = Html.fromHtml(data.download_podcast_description)
+        itemView.tv_hint.text = data.donwload_podcast_title
         itemView.iv_show_image.load(data.download_podcast_url)
     }
 }

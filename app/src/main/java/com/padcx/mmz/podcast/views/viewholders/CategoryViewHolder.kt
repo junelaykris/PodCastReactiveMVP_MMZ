@@ -3,7 +3,9 @@ package com.padcx.mmz.podcast.views.viewholders
 import android.view.View
 import com.padcx.mmz.podcast.data.ShowVO
 import com.padcx.mmz.podcast.data.vos.GenresVO
+import com.padcx.mmz.podcast.utils.load
 import com.padcx.mmz.shared.views.viewholders.BaseViewHolder
+import kotlinx.android.synthetic.main.activity_detail_show.*
 
 import kotlinx.android.synthetic.main.categories_item_view.view.*
 
@@ -15,6 +17,7 @@ class CategoryViewHolder(itemView: View) :
 
     override fun bindData(data: GenresVO) {
         mData = data
-       // itemView.iv_podcast.setImageResource(data.imageurl)
+        itemView.iv_podcast.load(data.image_url)
+        itemView.cateogry_title.text=data.name
     }
 }

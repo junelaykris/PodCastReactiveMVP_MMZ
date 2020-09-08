@@ -16,7 +16,9 @@ class DetailPresenterImpl: DetailPresenter, AbstractBasePresenter<DetailView>() 
 
     override fun onUiReady(lifeCycleOwner: LifecycleOwner, episodeID: String) {
 
-        loadAllDetailFromAPI(episodeID)
+        mPodCastModel.getDetailFromApiAndSaveToDatabase(episodeID, onSuccess = {
+        }, onError = {})
+
 
         mPodCastModel.getDetailEpisodeData(episodeID, onError = {})
             .observe(lifeCycleOwner, Observer {
@@ -39,8 +41,6 @@ class DetailPresenterImpl: DetailPresenter, AbstractBasePresenter<DetailView>() 
 
 
     private fun loadAllDetailFromAPI(episodeID: String) {
-        mPodCastModel.getDetailFromApiAndSaveToDatabase(episodeID, onSuccess = {
-        }, onError = {})
 
     }
 

@@ -36,37 +36,47 @@ object PodCastModelImpls : BaseModel(), PodCastModel  {
     }
 
     override fun getPlayListFromDB(onError: (String) -> Unit): LiveData<List<PlaylistVO>> {
+        return mTheDB.podCastDao().getPlayList()
+    }
+
+    override fun getAllPlayListFromApiAndSaveToDatabase(
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
         mPodCastApi.getPlayList(PODCAST_ID, VALUE_TYPE, VALUE_LAST_TIMESTAMP, VALUE_SORT,PARAM_API_KEY)
             .map {
                 it.items
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+            .subscribe ({
                 mTheDB.podCastDao().insertPlayList(it)
-            }
-        return mTheDB.podCastDao().getPlayList()
+            },{
+                onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
+            })
     }
+
 
     @SuppressLint("CheckResult")
     override fun getRandomEpisodeFromDB(onError: (String) -> Unit): LiveData<RandomPodCastVO> {
-        mPodCastApi.getRandomEpisode(PARAM_API_KEY)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                it?.let {
-                    mTheDB.podCastDao().setRandomEpisode(it)
-                }
-            }
         return mTheDB.podCastDao().getRandomEpisode()
     }
 
-    override fun getDetailEpisodeData(
-        episodeId: String,
+    override fun getRandomPodCastFromApiAndSaveToDatabase(
+        onSuccess: () -> Unit,
         onError: (String) -> Unit
-    ): LiveData<DetailPodCastVO> {
-          return mTheDB.podCastDao().getAllDetailDataByEpisodeID()
-      /*  return mTheDB.podCastDao().getAllDetailDataByEpisodeID(episodeId)*/
+    ) {
+        mPodCastApi.getRandomEpisode(PARAM_API_KEY)
+            .map { it }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({
+                it?.let {
+                    mTheDB.podCastDao().setRandomEpisode(it)
+                }
+            },{
+                onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
+            })
     }
 
     override fun startDownloadItem(context: Context, dataVO: DataVO) {
@@ -95,26 +105,18 @@ object PodCastModelImpls : BaseModel(), PodCastModel  {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe ({
-                it?.let{data-> mTheDB.podCastDao().insertDetailPodCast(data) }
+                it?.let{
+                        data-> mTheDB.podCastDao().insertDetailPodCast(data) }
             },{
                 onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
             })
     }
 
-    /* override fun getDetailEpisodeByIdFromDB(
-         episodeId: String,
-         onError: (String) -> Unit): LiveData<DetailPodCastVO> {
-         mPodCastApi.getDetailEpisodeByID(PARAM_API_KEY,episodeId)
-             .subscribeOn(Schedulers.io())
-             .observeOn(AndroidSchedulers.mainThread())
-             .subscribe {
-                 it?.let {
-                     mTheDB.podCastDao().insertDetailPodCast(it)
-                 }
-             }
-         //return mTheDB.podCastDao().getDetail()
-         return mTheDB.podCastDao().getAllDetailDataByEpisodeID(episodeId)
-     }
- */
 
+    override fun getDetailEpisodeData(
+        episodeId: String,
+        onError: (String) -> Unit
+    ): LiveData<DetailPodCastVO> {
+        return mTheDB.podCastDao().getAllDetailDataByEpisodeID(episodeId)
+    }
 }

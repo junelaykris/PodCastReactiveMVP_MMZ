@@ -15,14 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        android:padding="@dimen/margin_3x">
+        android:padding="@dimen/margin_1x">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_2x"
-            android:layout_marginTop="@dimen/margin_2x"
-            android:layout_marginRight="@dimen/margin_2x"
+            android:layout_margin="@dimen/margin_1x"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -43,8 +42,8 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/app_name"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/culture"
-                    tools:srcCompat="@drawable/culture" />
+                    app:srcCompat="@drawable/placeholder"
+                    tools:srcCompat="@drawable/placeholder" />
 
             </com.google.android.material.card.MaterialCardView>
 

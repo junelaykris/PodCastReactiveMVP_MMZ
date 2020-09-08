@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_search.view.*
 class SearchFragment : Fragment(), CategoryView {
 
     private lateinit var categoryAdapter: CategoryItemAdapter
-    val categorylist: ArrayList<ShowVO> = arrayListOf()
+    val categorylist: ArrayList<GenresVO> = arrayListOf()
 
     private lateinit var generePresenter: GenresPresenter
 
@@ -54,28 +54,6 @@ class SearchFragment : Fragment(), CategoryView {
             LinearLayoutManager(DownloadFragment.mContext, LinearLayoutManager.HORIZONTAL, false)
         view.rv_category.layoutManager = linearLayoutManager
         view.rv_category.adapter = categoryAdapter
-
-        /*   categorylist.add(
-               ShowVO(
-                   "",
-                   "",
-                   "",
-                   R.drawable.podcastimage
-               )
-           )
-
-
-           categorylist.add(
-               ShowVO(
-                   "",
-                   "",
-                   "",
-                   R.drawable.podcastimage
-               )
-           )
-
-           categoryAdapter.setNewData(categorylist)*/
-
         return view
 
     }

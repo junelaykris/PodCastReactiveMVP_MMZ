@@ -1,6 +1,7 @@
 package com.padcx.mmz.podcast.mvp.view
 
 import com.padcx.mmz.podcast.data.vos.DetailPodCastVO
+import com.padcx.mmz.podcast.data.vos.PodcastVO
 import com.padcx.mmz.shared.views.BaseView
 
 /**

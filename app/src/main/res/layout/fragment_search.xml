@@ -39,7 +39,6 @@
         android:id="@+id/title_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_2x"
         android:padding="@dimen/margin_3x"
         android:text="Categories"
         android:textStyle="bold"
