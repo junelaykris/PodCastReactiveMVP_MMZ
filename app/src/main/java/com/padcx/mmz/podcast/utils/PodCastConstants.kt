@@ -6,7 +6,7 @@ package com.padcx.mmz.podcast.utils
 
 const val BASE_URL = "https://cdb93465-eb2d-49fe-88b5-092282d69090.mock.pstmn.io"
 
-const val PARAM_API_KEY ="1482256d06c14502a542d48c95407f18"
+const val PARAM_API_KEY =""
 
 
 const val GET_CATEGORIES = "/genres?top_level_only=0"

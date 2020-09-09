@@ -98,8 +98,9 @@
                             android:ellipsize="end"
                             android:lineSpacingMultiplier="1.5"
                             android:maxLines="3"
-                            android:text="@string/sample_text"
-                            android:textStyle="bold" />
+                            android:text=""
+                            android:textStyle="bold"
+                            tools:text="@string/sample_text" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 

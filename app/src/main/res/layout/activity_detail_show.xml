@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/colorWhite"
                 android:fitsSystemWindows="true"
-                app:contentScrim="?attr/colorPrimary"
+                app:contentScrim="@color/colorWhite"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:toolbarId="@+id/toolbar">
 
@@ -58,7 +58,7 @@
                         android:layout_marginBottom="@dimen/margin_6x"
                         android:background="@drawable/rounded_background"
                         android:padding="@dimen/margin_2x"
-                        android:text="@string/art_design"
+                        tools:text="@string/art_design"
                         android:textStyle="bold" />
 
                 </RelativeLayout>

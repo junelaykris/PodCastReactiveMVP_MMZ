@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.padcx.mmz.podcast.views.viewpods.MediaPlayerViewPod xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -42,12 +43,13 @@
                     android:layout_marginStart="@dimen/margin_4x"
                     android:layout_marginEnd="@dimen/margin_3x"
                     android:layout_toEndOf="@id/ivPodcast"
-                    android:text="@string/play_title"
                     android:ellipsize="end"
+                    android:text=""
                     android:textColor="@color/colorWhite"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/ivPodcast"
-                    app:layout_constraintTop_toTopOf="@+id/ivPodcast"/>
+                    app:layout_constraintTop_toTopOf="@+id/ivPodcast"
+                    tools:text="@string/play_title" />
 
                 <TextView
                     android:id="@+id/tv_playing"
@@ -56,11 +58,12 @@
                     android:layout_alignTop="@id/ivPodcast"
                     android:layout_marginStart="@dimen/margin_4x"
                     android:layout_toEndOf="@id/ivPodcast"
-                    android:text="@string/play_title"
+                    android:text=""
                     android:textColor="@color/line_color"
                     android:textSize="@dimen/small_text_size"
                     app:layout_constraintStart_toEndOf="@+id/ivPodcast"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_show_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/iv_show_title"
+                    tools:text="@string/play_title" />
 
                 <androidx.appcompat.widget.AppCompatSeekBar
                     android:id="@+id/progressBar"
@@ -95,8 +98,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ivPodcast"
                     android:layout_toEndOf="@id/tvPlaySpeed"
-                    android:text=""
                     android:background="@drawable/backward"
+                    android:text=""
                     android:textColor="@color/colorWhite"
                     app:layout_constraintBottom_toBottomOf="@+id/tvPlaySpeed"
                     app:layout_constraintEnd_toStartOf="@+id/iv_play_pause"
@@ -127,12 +130,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ivPodcast"
                     android:layout_toEndOf="@id/tvPlaySpeed"
+                    android:background="@drawable/forward"
                     android:text=""
                     android:textColor="@color/colorWhite"
                     app:layout_constraintBottom_toBottomOf="@+id/tvBackward"
                     app:layout_constraintEnd_toStartOf="@+id/tv_sleep"
                     app:layout_constraintHorizontal_bias="0.5"
-                    android:background="@drawable/forward"
                     app:layout_constraintStart_toEndOf="@+id/iv_play_pause"
                     app:layout_constraintTop_toTopOf="@+id/tvBackward" />
 
@@ -154,13 +157,13 @@
                     android:id="@+id/tv_time"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_2x"
                     android:layout_margin="@dimen/margin_3x"
-                    android:text="1h left"
+                    android:layout_marginStart="@dimen/margin_2x"
+                    android:text=""
                     android:textColor="@color/progress_color"
                     app:layout_constraintBottom_toBottomOf="@+id/progressBar"
-                    app:layout_constraintStart_toEndOf="@+id/progressBar"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/progressBar"
                     app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
 

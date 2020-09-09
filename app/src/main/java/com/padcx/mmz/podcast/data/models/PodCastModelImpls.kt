@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.LiveData
 import com.bumptech.glide.load.model.stream.BaseGlideUrlLoader
+import com.padcx.mmz.podcast.BuildConfig
 import com.padcx.mmz.podcast.data.BaseModel
 import com.padcx.mmz.podcast.data.PodCastModel
 import com.padcx.mmz.podcast.data.vos.*
@@ -24,7 +25,7 @@ object PodCastModelImpls : BaseModel(), PodCastModel  {
         onError: (String) -> Unit
     ) {
 
-        mPodCastApi.getGenreList(PARAM_API_KEY,"0")
+        mPodCastApi.getGenreList(BuildConfig.PODCAST_APIKEY,"0")
             .map { it.genres?.toList() ?: listOf() }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -43,7 +44,7 @@ object PodCastModelImpls : BaseModel(), PodCastModel  {
         onSuccess: () -> Unit,
         onError: (String) -> Unit
     ) {
-        mPodCastApi.getPlayList(PODCAST_ID, VALUE_TYPE, VALUE_LAST_TIMESTAMP, VALUE_SORT,PARAM_API_KEY)
+        mPodCastApi.getPlayList(PODCAST_ID, VALUE_TYPE, VALUE_LAST_TIMESTAMP, VALUE_SORT,BuildConfig.PODCAST_APIKEY)
             .map {
                 it.items
             }
@@ -66,7 +67,7 @@ object PodCastModelImpls : BaseModel(), PodCastModel  {
         onSuccess: () -> Unit,
         onError: (String) -> Unit
     ) {
-        mPodCastApi.getRandomEpisode(PARAM_API_KEY)
+        mPodCastApi.getRandomEpisode(BuildConfig.PODCAST_APIKEY)
             .map { it }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -100,7 +101,7 @@ object PodCastModelImpls : BaseModel(), PodCastModel  {
         onSuccess: (detailVO: DetailPodCastVO) -> Unit,
         onError: (String) -> Unit
     ) {
-        mPodCastApi.getDetailEpisodeByID(PARAM_API_KEY,episodeId)
+        mPodCastApi.getDetailEpisodeByID(BuildConfig.PODCAST_APIKEY,episodeId)
             .map { it }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

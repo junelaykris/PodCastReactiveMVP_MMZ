@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <RelativeLayout
@@ -14,7 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_4x"
-            android:text="@string/title"
+            tools:text="@string/title"
+            android:text=""
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/title_text_size" />
 
@@ -76,7 +78,8 @@
             android:layout_margin="@dimen/margin_4x"
             android:justificationMode="inter_word"
             android:lineSpacingExtra="@dimen/margin_medium"
-            android:text="@string/description" />
+            android:text=""
+            tools:text="@string/description"/>
 
     </RelativeLayout>
 
