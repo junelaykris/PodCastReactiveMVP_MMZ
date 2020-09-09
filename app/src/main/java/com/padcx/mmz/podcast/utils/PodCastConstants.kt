@@ -4,9 +4,9 @@ package com.padcx.mmz.podcast.utils
  * Created by Myint Myint Zaw on 9/5/2020.
  */
 
-const val BASE_URL = "https://cdb93465-eb2d-49fe-88b5-092282d69090.mock.pstmn.io"
+const val BASE_URL = "https://dfdd4374-cc38-4e63-8b32-1cd35d362769.mock.pstmn.io"
 
-const val PARAM_API_KEY =""
+const val PARAM_API_KEY ="X-ListenAPI-Key"
 
 
 const val GET_CATEGORIES = "/genres?top_level_only=0"
