@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,12 +59,13 @@ class DownloadFragment: Fragment(),DownloadedView{
     }
 
     override fun displayDownloadPodcastList(showlist: List<DownloadVO>) {
+        Toast.makeText(context,"Download list "+showlist.size,Toast.LENGTH_SHORT).show()
         showsAdapter.setNewData(showlist.toMutableList())
     }
 
     override fun navigateToDetail(downloadVO: DownloadVO) {
         startActivity(PodCastDetailActivity.newIntent(activity as Context, downloadVO.download_id,
-            DOWNLOADPAGE,downloadVO.download_audio_path))
+            DOWNLOADPAGE,downloadVO.download_audio_path!!))
     }
 
 }

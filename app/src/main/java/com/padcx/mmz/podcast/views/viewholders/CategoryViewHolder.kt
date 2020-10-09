@@ -17,7 +17,7 @@ class CategoryViewHolder(itemView: View) :
 
     override fun bindData(data: GenresVO) {
         mData = data
-        itemView.iv_podcast.load(data.image_url)
+       /* data.image_url?.let { itemView.iv_podcast.load(it) }*/
         itemView.cateogry_title.text=data.name
     }
 }

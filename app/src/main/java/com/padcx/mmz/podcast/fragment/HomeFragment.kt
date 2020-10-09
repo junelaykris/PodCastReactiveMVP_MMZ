@@ -18,7 +18,7 @@ import com.padcx.mmz.podcast.R
 import com.padcx.mmz.podcast.activities.PodCastDetailActivity
 import com.padcx.mmz.podcast.adapter.UpNextShowItemAdapter
 import com.padcx.mmz.podcast.data.ShowVO
-import com.padcx.mmz.podcast.data.vos.DataVO
+import com.padcx.mmz.podcast.data.vos.EpisodeVO
 import com.padcx.mmz.podcast.data.vos.PlaylistVO
 import com.padcx.mmz.podcast.data.vos.RandomPodCastVO
 import com.padcx.mmz.podcast.mvp.presenterImpls.HomePresenterImpl
@@ -38,7 +38,7 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 class HomeFragment : Fragment(), HomeView {
     private lateinit var upnextShowAdapter: UpNextShowItemAdapter
     val upcominglist: ArrayList<ShowVO> = arrayListOf()
-    private var initPlayer = false
+    private var initPlayer = true
 
     private lateinit var homePresenter: HomePresenter
     private lateinit var mPlayerViewPod: MediaPlayerViewPod
@@ -84,25 +84,31 @@ class HomeFragment : Fragment(), HomeView {
         homePresenter.initPresenter(this)
     }
 
-    override fun displayPlayList(playList: List<PlaylistVO>) {
+    override fun displayPlayList(playList: List<EpisodeVO>) {
         upnextShowAdapter.setNewData(playList.toMutableList())
     }
 
-    override fun showRandomEpisode(randomdata: RandomPodCastVO) {
+    override fun showRandomEpisode(randomdata: EpisodeVO) {
 
-        val htmlTextStr: String = Html.fromHtml(randomdata.description).toString()
-        tvdescription.text = htmlTextStr
-        mPlayerViewPod.setData(
-            randomdata.podcast!!.title,
+        if(randomdata!=null){
+            val htmlTextStr: String = Html.fromHtml(randomdata.description).toString()
+            tvdescription.text = htmlTextStr
+
+            mPlayerViewPod.setData(randomdata.title,"Planet Broadcasting",randomdata.audio_length_sec, randomdata.image,
+                randomdata.audio)
+
+        }
+        /* mPlayerViewPod.setData(
+            randomdata?.title,
             randomdata.podcast!!.publisher,
             randomdata.audio_length_sec,
             randomdata.image,
             randomdata.audio
-        )
+        )*/
     }
 
     override fun onTouchPlayPause(audioUrl: String) {
-        if (!initPlayer) {
+        if (initPlayer) {
             MyMediaPlayerHelper.initMediaPlayer(
                 activity as Activity, audioUrl,
                 mPlayerViewPod.getSeekBar(),
@@ -111,7 +117,7 @@ class HomeFragment : Fragment(), HomeView {
                 mPlayerViewPod.getRemainingTime(),
                 PLAYER_TYPE_STREAMING
             )
-            initPlayer = true
+            initPlayer = false
         } else {
             MyMediaPlayerHelper.playPauseMediaPlayBack(activity as Activity)
         }
@@ -125,11 +131,11 @@ class HomeFragment : Fragment(), HomeView {
         MyMediaPlayerHelper.forwardMediaPlayBack(activity as Activity)
     }
 
-    override fun selectedDownloadItem(data: DataVO) {
+    override fun selectedDownloadItem(data: EpisodeVO) {
         requestToDownloadPermissions(data)
     }
 
-    private fun requestToDownloadPermissions(data: DataVO) {
+    private fun requestToDownloadPermissions(data: EpisodeVO) {
         val permission = ContextCompat.checkSelfPermission(
             activity as Activity,
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -138,7 +144,8 @@ class HomeFragment : Fragment(), HomeView {
         if (permission != PackageManager.PERMISSION_GRANTED) {
             makeRequest()
         } else {
-            data?.let {  homePresenter?.onDownloadPodcastItem(activity as Context,it) }
+            data?.let {
+                homePresenter?.onDownloadPodcastItem(activity as Context, it) }
         }
     }
 
@@ -150,13 +157,18 @@ class HomeFragment : Fragment(), HomeView {
         )
     }
 
-    override fun navigateToDetailScreen(episodeID: String) {
-        startActivity(PodCastDetailActivity.newIntent(activity as Context, episodeID, HOMEPAGE, ""))
+    override fun navigateToDetailScreen(episodeID: String?) {
+        startActivity(episodeID?.let {
+            PodCastDetailActivity.newIntent(
+                activity as Context,
+                it, HOMEPAGE, ""
+            )
+        })
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        if(initPlayer)  MyMediaPlayerHelper.mediaPlayerStopPlayBack(activity as Activity)
+      //  if (initPlayer) MyMediaPlayerHelper.mediaPlayerStopPlayBack(activity as Activity)
     }
 
 

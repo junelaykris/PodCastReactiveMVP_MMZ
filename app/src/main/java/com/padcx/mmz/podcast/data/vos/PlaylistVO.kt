@@ -4,13 +4,30 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.SerializedName
 import com.padcx.mmz.podcast.persistance.typeconverters.DataConverter
+import com.padcx.mmz.podcast.persistance.typeconverters.GenreIdListConverter
 import com.padcx.mmz.podcast.persistance.typeconverters.PodCastVOConverter
 
 /**
  * Created by Myint Myint Zaw on 9/5/2020.
  */
+
+@IgnoreExtraProperties
+@Entity(tableName = "playlist_entity")
+@TypeConverters(GenreIdListConverter::class)
+data class PlaylistVO(
+    @PrimaryKey
+    var id: String = "",
+    var image: String? = "",
+    var listennotes_url: String? = "",
+    var publisher: String? = "",
+    var thumbnail: String? = "",
+    var title: String? = ""
+)
+
+/*
 @Entity(tableName = "playlist_entity")
 @TypeConverters(DataConverter::class, PodCastVOConverter::class)
 data class PlaylistVO(
@@ -42,4 +59,4 @@ data class DataVO(
     @SerializedName("pub_date_ms")var pub_date_ms: Long,
     @SerializedName("thumbnail")var thumbnail: String,
     @SerializedName("title")var title: String
-)
+)*/

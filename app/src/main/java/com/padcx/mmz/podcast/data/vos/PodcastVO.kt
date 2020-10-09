@@ -3,6 +3,8 @@ package com.padcx.mmz.podcast.data.vos
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.google.firebase.database.Exclude
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.SerializedName
 import com.padcx.mmz.podcast.persistance.typeconverters.ExtraConverter
 import com.padcx.mmz.podcast.persistance.typeconverters.GenreIdListConverter
@@ -11,6 +13,21 @@ import com.padcx.mmz.podcast.persistance.typeconverters.LookingForConverter
 /**
  * Created by Myint Myint Zaw on 9/5/2020.
  */
+@IgnoreExtraProperties
+@Entity(tableName = "podcast")
+@TypeConverters(GenreIdListConverter::class)
+data class PodcastVO(
+    @PrimaryKey
+    var id: String = "",
+    var image: String? = "",
+    var listennotes_url: String? = "",
+    var publisher: String? = "",
+    var thumbnail: String? = "",
+    var title: String? = ""
+)
+
+
+/*
 @Entity(tableName = "podcast")
 @TypeConverters(ExtraConverter::class, LookingForConverter::class, GenreIdListConverter::class)
 data class PodcastVO(
@@ -59,4 +76,4 @@ data class Extra(
     @SerializedName("url3")val url3: String,
     @SerializedName("wechat_handle")val wechat_handle: String,
     @SerializedName("youtube_url") val youtube_url: String
-)
+)*/

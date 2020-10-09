@@ -20,24 +20,33 @@ interface PodCastDao {
     fun getAllGenre(): LiveData<List<GenresVO>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPlayList(list: List<PlaylistVO>)
+    fun insertAllEpisodes(list: List<EpisodeVO>)
 
-    @Query("SELECT * FROM playlist_entity")
-    fun getPlayList(): LiveData<List<PlaylistVO>>
+    @Query("SELECT * FROM episodes")
+    fun getAllEpisodes(): LiveData<List<EpisodeVO>>
+
+    @Query("select * from podcast")
+    fun getAllPodcastData(): LiveData<List<PodcastVO>>
+
+    @Query("select * from episodes WHERE id = :detail_id")
+    fun getAllDetailDataByEpisodeID(detail_id: String): LiveData<EpisodeVO>
 
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun setRandomEpisode(randomEpisode: RandomPodCastVO)
+    /* @Insert(onConflict = OnConflictStrategy.REPLACE)
+     fun insertPlayList(list: List<PlaylistVO>)*/
 
-    @Query("SELECT * FROM random_entity")
-    fun getRandomEpisode(): LiveData<RandomPodCastVO>
+    /*  @Query("SELECT * FROM playlist_entity")
+      fun getPlayList(): LiveData<List<PlaylistVO>>
+
+      @Insert(onConflict = OnConflictStrategy.REPLACE)
+      fun setRandomEpisode(randomEpisode: RandomPodCastVO)
+
+      @Query("SELECT * FROM random_entity")
+      fun getRandomEpisode(): LiveData<RandomPodCastVO>*/
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDetailPodCast(detail: DetailPodCastVO)
-
-    @Query("select * from detail_entity WHERE id = :detail_id")
-    fun getAllDetailDataByEpisodeID(detail_id : String): LiveData<DetailPodCastVO>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDownloadPodcastData(podcasts: DownloadVO)

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.padcx.mmz.podcast.R
 import com.padcx.mmz.podcast.data.vos.DetailPodCastVO
+import com.padcx.mmz.podcast.data.vos.EpisodeVO
 import com.padcx.mmz.podcast.data.vos.PodcastVO
 import com.padcx.mmz.podcast.mvp.presenterImpls.DetailPresenterImpl
 import com.padcx.mmz.podcast.mvp.presenters.DetailPresenter
@@ -57,6 +58,7 @@ class PodCastDetailActivity : AppCompatActivity(), DetailView {
         setUpPresenter()
         setUpViewPod()
         setUpListener()
+
         mPresenter.onUiReady(this, intent.getStringExtra(EPISODE_ID).toString())
     }
 
@@ -77,11 +79,11 @@ class PodCastDetailActivity : AppCompatActivity(), DetailView {
         mPresenter.initPresenter(this)
     }
 
-    override fun displayDetailData(data: DetailPodCastVO) {
-        tvCategoriesType.text = data.podcast.type
+    override fun displayDetailData(data: EpisodeVO) {
+       /* tvCategoriesType.text = data.podcast.type*/
         podCastTitle.text = data.title
-        ivDetail.load(data.thumbnail)
-        miniPlayerViewPod.setUpData(data.audio)
+        ivDetail.load(data.thumbnail!!)
+        miniPlayerViewPod.setUpData(data.audio!!)
         tv_description.text = Html.fromHtml(data.description)
     }
 

@@ -1,6 +1,6 @@
 package com.padcx.mmz.podcast.delegate
 
-import com.padcx.mmz.podcast.data.vos.DataVO
+import com.padcx.mmz.podcast.data.vos.EpisodeVO
 import com.padcx.mmz.podcast.data.vos.PlaylistVO
 
 /**
@@ -9,7 +9,9 @@ import com.padcx.mmz.podcast.data.vos.PlaylistVO
 interface PodcastDelegate {
     fun onTapShowData()
 
-    fun onTapPlayListItem(playListVO: PlaylistVO)
+    fun onTapPlayListItem(episodeVO: EpisodeVO)
 
-    fun onTapDownloadItem(dataVO: DataVO)
+    fun onTapDownloadItem(dataVO: EpisodeVO)
+
+    /*fun onTapPlayListItem(playListVO: PlaylistVO)*/
 }

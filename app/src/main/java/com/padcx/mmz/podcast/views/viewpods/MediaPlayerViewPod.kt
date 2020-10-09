@@ -24,16 +24,16 @@ class MediaPlayerViewPod @JvmOverloads constructor(
     }
 
     fun setData(
-        title: String,
-        desc: String,
-        duration: Int,
-        url: String,
-        audio: String
+        title: String?,
+        desc: String?,
+        duration: Int?,
+        url: String?,
+        audio: String?
     ){
         iv_show_title.text = title
-        tv_playing.text=desc
-        ivPodcast.load(url)
-        tv_time.text = duration.checkTime()
+        tv_playing.text= desc
+        ivPodcast.load(url!!)
+        tv_time.text = duration?.checkTime()
         mAudioUrl=audio
     }
 

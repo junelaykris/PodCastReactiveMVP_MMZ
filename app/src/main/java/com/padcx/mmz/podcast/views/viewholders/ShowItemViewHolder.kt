@@ -29,10 +29,9 @@ class ShowItemViewHolder(
 
     override fun bindData(data: DownloadVO) {
         mData = data
-
-        itemView.tv_category.text = "CATEGORY"
+        /* itemView.tv_category.text = "CATEGORY"*/
         itemView.tv_detail.text = Html.fromHtml(data.download_podcast_description)
-        itemView.tv_hint.text = data.donwload_podcast_title
-        itemView.iv_show_image.load(data.download_podcast_url)
+        itemView.tv_hint.text = data.download_podcast_title
+        itemView.iv_show_image.load(data.download_podcast_url!!)
     }
 }

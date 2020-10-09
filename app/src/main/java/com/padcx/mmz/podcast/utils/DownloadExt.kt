@@ -4,9 +4,9 @@ import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
-import com.padcx.mmz.podcast.data.vos.DataVO
+import com.padcx.mmz.podcast.data.vos.EpisodeVO
 
-fun startDownloading(context: Context,data : DataVO)
+fun startDownloading(context: Context,data : EpisodeVO)
 {
     //download request
     val request  = DownloadManager.Request(Uri.parse(data.audio))
@@ -16,7 +16,7 @@ fun startDownloading(context: Context,data : DataVO)
             setDescription(data.description)
             allowScanningByMediaScanner()
             setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-            setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,"${data.title.trim().substring(0,8)}.mp3")
+            setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,"${data.title?.trim()?.substring(0,8)}.mp3")
         }
     //get download service , and enqueue file
     val manager= context?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager

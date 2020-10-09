@@ -1,23 +1,20 @@
 package com.padcx.mmz.podcast.mvp.view
 
-import com.padcx.mmz.podcast.data.vos.DataVO
-import com.padcx.mmz.podcast.data.vos.GenresVO
-import com.padcx.mmz.podcast.data.vos.PlaylistVO
-import com.padcx.mmz.podcast.data.vos.RandomPodCastVO
+import com.padcx.mmz.podcast.data.vos.*
 import com.padcx.mmz.shared.views.BaseView
 
 /**
  * Created by Myint Myint Zaw on 9/5/2020.
  */
 interface HomeView  : BaseView {
-    fun displayPlayList(playList:List<PlaylistVO>)
-    fun showRandomEpisode(randomEp : RandomPodCastVO)
+    fun displayPlayList(playList:List<EpisodeVO>)
+    fun showRandomEpisode(randomEp : EpisodeVO)
 
     fun onTouchPlayPause(audioUrl : String)
     fun onTouchForwardThirtySec()
     fun onTouchBackwardFifteenSec()
 
-    fun selectedDownloadItem(data: DataVO)
+    fun selectedDownloadItem(data: EpisodeVO)
 
-    fun navigateToDetailScreen(episodeID : String)
+    fun navigateToDetailScreen(episodeID : String?)
 }

@@ -3,6 +3,7 @@ package com.padcx.mmz.podcast.utils
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.padcx.mmz.podcast.R
+import java.util.*
 
 /**
  * Created by Myint Myint Zaw on 9/5/2020.
@@ -23,4 +24,16 @@ fun Int.checkTime(): String {
         return "$min min"
     }
     return "$hours hr $min min"
+}
+private var lastItem = -1
+
+fun randomNumber(eplist: Int): Int {
+    val randomValue = Random().nextInt(eplist)
+
+    return if (randomValue != lastItem) {
+        lastItem = randomValue
+        randomValue
+    } else {
+        randomNumber(eplist)
+    }
 }
